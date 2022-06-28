@@ -125,13 +125,13 @@ datos.addEventListener('submit', (e) => {
     if (!_validacion) {
         return;
     }
-    console.log(estadoEditar)
+
     if (estadoEditar) {
         actualizarTarea(id, {
             titulo: titulo.value,
             descripcion: descripcion.value,
             responsable: responsable.value,
-            completada: estado.value
+            estado: estado.value
         });       
         swal.fire('Actualizar', 'La tarea fue actualizada con éxito', 'success');
          estadoEditar = false;
