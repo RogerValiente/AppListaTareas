@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         //Editar tarea
         const btnEditar = contenedorTareas.querySelectorAll('.btnEditar')
+        
         btnEditar.forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 const doc = await editarTarea(e.target.dataset.id);
@@ -57,7 +58,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 datos['btnGuardar'].innerText = 'Actualizar';
 
                 estadoEditar = true;
-                id = doc.id;
+                id = doc.id;                
             })
         })
         //Eliminar tarea
@@ -111,7 +112,6 @@ function Validaciones() {
     return resultado;
 }
 
-
 //Para guardar o actualizar una tarea
 datos.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -125,19 +125,17 @@ datos.addEventListener('submit', (e) => {
     if (!_validacion) {
         return;
     }
-
-    if (estadoEditar === "true") {
+    console.log(estadoEditar)
+    if (estadoEditar) {
         actualizarTarea(id, {
             titulo: titulo.value,
             descripcion: descripcion.value,
             responsable: responsable.value,
             completada: estado.value
-        });
-
+        });       
         swal.fire('Actualizar', 'La tarea fue actualizada con éxito', 'success');
-        estadoEditar = false;
+         estadoEditar = false;
     } else {
-
         guardarTarea(titulo.value, descripcion.value, responsable.value, estado.value);
         swal.fire('Guardar', 'La tarea fue creada con éxito', 'success');
     }
